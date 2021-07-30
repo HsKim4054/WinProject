@@ -15,18 +15,11 @@ bool CObj::Init()
 
 void CObj::Input(float fDeltaTime)
 {
-	list<CObj*>::iterator iter;
-	list<CObj*>::iterator iterEnd = m_ObjList.end();
 
-	for (iter = m_LayerList.begin(); iter != iterEnd; ++iter)
-	{
-		(*iter)->LateUpdate(fDeltaTime);
-	}
-	return 0;
 }
-
 void CObj::Update(float fDeltaTime)
 {
+
 }
 
 int CObj::LateUpdate(float fDeltaTime)
