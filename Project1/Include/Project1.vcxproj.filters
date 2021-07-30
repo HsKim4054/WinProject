@@ -16,6 +16,9 @@
     <Filter Include="01.Core">
       <UniqueIdentifier>{3cbce58c-ac51-4418-ab56-85447b12d731}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.Scene">
+      <UniqueIdentifier>{9e1f74e9-1bc1-4235-b33f-c097b9bb24af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -23,6 +26,15 @@
     </ClCompile>
     <ClCompile Include="Core.cpp">
       <Filter>01.Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>02.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scene.cpp">
+      <Filter>02.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\InGameScene.cpp">
+      <Filter>02.Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +52,15 @@
     </ClInclude>
     <ClInclude Include="Core.h">
       <Filter>01.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>02.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scene.h">
+      <Filter>02.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\InGameScene.h">
+      <Filter>02.Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
