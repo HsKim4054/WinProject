@@ -8,5 +8,7 @@ private:
 private:
 	CInGameScene();
 	~CInGameScene();
+public:
+	virtual bool Init();
 };
 

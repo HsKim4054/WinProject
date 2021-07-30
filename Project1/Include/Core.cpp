@@ -1,6 +1,6 @@
 #include "Core.h"
 #include "Scene\SceneManager.h"
-
+#include "Core\Timer.h"
 CCore* CCore::m_pInst = NULL;
 bool CCore::m_bLoop = true;
 
@@ -12,6 +12,7 @@ CCore::CCore()
 CCore::~CCore()
 {
 	DESTROY_SINGLE(CSceneManager);
+	DESTROY_SINGLE(CTimer);
 }
 
 bool CCore::Init(HINSTANCE hInst)
@@ -19,11 +20,20 @@ bool CCore::Init(HINSTANCE hInst)
 	m_hInst = hInst;
 	MyRegisterClass();
 
+	// 해상도 설정
 	m_tRS.iW = 1280;
 	m_tRS.iH = 720;
 
 	Create();
 
+	//화면 DC를 만들어준다.
+	m_hDC = GetDC(m_hWnd);
+
+	//타이머 초기화
+	if (!GET_SINGLE(CTimer)->Init())
+		return false;
+
+	//장면관리자 초기화
 	if (!GET_SINGLE(CSceneManager)->Init())
 		return false;
 
@@ -43,10 +53,51 @@ int CCore::Run()
 		}
 		else
 		{
+			Logic();
 		}
 	}
 
 	return (int)msg.wParam;
+}
+
+void CCore::Logic()
+{
+	//타이머 갱신
+	GET_SINGLE(CTimer)->Update();
+
+	float fDeltaTime = GET_SINGLE(CTimer)->GetDeltaTime();
+
+	Input(fDeltaTime);
+	Update(fDeltaTime);
+	LateUpdate(fDeltaTime);
+	Collision(fDeltaTime);
+	Render(fDeltaTime);
+}
+
+void CCore::Input(float fDeltaTime)
+{
+	GET_SINGLE(CSceneManager)->Input(fDeltaTime);
+}
+
+void CCore::Update(float fDeltaTime)
+{
+	GET_SINGLE(CSceneManager)->Update(fDeltaTime);
+}
+
+int CCore::LateUpdate(float fDeltaTime)
+{
+	GET_SINGLE(CSceneManager)->LateUpdate(fDeltaTime);
+	return 0;
+}
+
+void CCore::Collision(float fDeltaTime)
+{
+	GET_SINGLE(CSceneManager)->Collision(fDeltaTime);
+}
+
+void CCore::Render(float fDeltaTime)
+{
+	GET_SINGLE(CSceneManager)->Render(m_hDC, fDeltaTime);
 }
 
 ATOM CCore::MyRegisterClass()
