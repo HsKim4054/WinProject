@@ -45,6 +45,9 @@ public:
 	}
 
 public:
+	void AddObject(class CObj* pObj);
+
+public:
 	void Input(float fDeltaTime);
 	void Update(float fDeltaTime);
 	int LateUpdate(float fDeltaTime);
