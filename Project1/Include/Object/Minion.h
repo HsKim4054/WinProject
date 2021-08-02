@@ -1,23 +1,25 @@
 #pragma once
 #include "MoveObj.h"
-class CPlayer :
+class CMinion :
 	public CMoveObj
 {
 private:
 	friend class CObj;
 
 private:
-	CPlayer();
-	CPlayer(const CPlayer& player);
-	~CPlayer();
+	CMinion();
+	CMinion(const CMinion& minion);
+	~CMinion();
+
+private:
+	MOVE_DIR	m_eDir;
 
 public:
 	virtual bool Init();
-	virtual void Input(float fDeltaTime);
 	virtual void Update(float fDeltaTime);
 	virtual int LateUpdate(float fDeltaTime);
 	virtual void Collision(float fDeltaTime);
 	virtual void Render(HDC hDC, float fDeltaTime);
-	virtual CPlayer* Clone();
-};
+	virtual CMinion* Clone();
 
+};
