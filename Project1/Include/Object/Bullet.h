@@ -1,26 +1,33 @@
 #pragma once
 #include "MoveObj.h"
-class CPlayer :
+class CBullet :
 	public CMoveObj
 {
 private:
 	friend class CObj;
+	friend class CScene;
+
+public:
+	CBullet();
+	CBullet(const CBullet& bullet);
+	~CBullet();
 
 private:
-	CPlayer();
-	CPlayer(const CPlayer& player);
-	~CPlayer();
+	float	m_fLimitDist;
+	float	m_fDist;
+
+public:
+	void SetBulletDistanace(float fDist)
+	{
+		m_fLimitDist = fDist;
+	}
 
 public:
 	virtual bool Init();
-	virtual void Input(float fDeltaTime);
 	virtual void Update(float fDeltaTime);
 	virtual int LateUpdate(float fDeltaTime);
 	virtual void Collision(float fDeltaTime);
 	virtual void Render(HDC hDC, float fDeltaTime);
-	virtual CPlayer* Clone();
-
-private:
-	void Fire();
+	virtual CBullet* Clone();
 };
 

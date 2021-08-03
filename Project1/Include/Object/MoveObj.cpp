@@ -7,6 +7,7 @@ CMoveObj::CMoveObj() : m_fAngle(0.f), m_fSpeed(100.f)
 CMoveObj::CMoveObj(const CMoveObj & obj) : CObj(obj)
 {
 	m_fAngle = obj.m_fAngle;
+	m_fSpeed = obj.m_fSpeed;
 }
 
 CMoveObj::~CMoveObj()
@@ -66,16 +67,16 @@ void CMoveObj::MoveY(float y, float fDeltaTime)
 	m_tPos.y += y * fDeltaTime;
 }
 
-void CMoveObj::MoveAngle(float fSpeed)
+void CMoveObj::MoveAngle()
 {
-	m_tPos.x += cosf(m_fAngle) * fSpeed;
-	m_tPos.y += sinf(m_fAngle) * fSpeed;
+	m_tPos.x += cosf(m_fAngle) * m_fSpeed;
+	m_tPos.y += sinf(m_fAngle) * m_fSpeed;
 }
 
-void CMoveObj::MoveAngle(float fSpeed, float fDeltaTime)
+void CMoveObj::MoveAngle(float fDeltaTime)
 {
-	m_tPos.x += cosf(m_fAngle) * fSpeed * fDeltaTime;
-	m_tPos.y += sinf(m_fAngle) * fSpeed * fDeltaTime;
+	m_tPos.x += cosf(m_fAngle) * m_fSpeed * fDeltaTime;
+	m_tPos.y += sinf(m_fAngle) * m_fSpeed * fDeltaTime;
 }
 
 void CMoveObj::Input(float fDeltaTime)

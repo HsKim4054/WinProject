@@ -8,6 +8,12 @@ class CSceneManager
 private:
 	class CScene* m_pScene;
 	class CScene* m_pNextScene;
+
+public:
+	class CScene* GetScene() const
+	{
+		return m_pScene;
+	}
 public:
 	bool Init();
 	void Input(float fDeltaTime);
